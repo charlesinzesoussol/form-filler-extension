@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "name": "Form Auto-Fill",
+  "version": "1.0.0",
+  "description": "Automatically fill all form fields on any webpage with a single button click",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/utils/constants.js",
+        "src/utils/security.js",
+        "src/utils/field-mapper.js",
+        "src/utils/fake-data-generator.js",
+        "src/content/form-detector.js",
+        "src/content/form-filler.js",
+        "src/content/content.js"
+      ],
+      "css": ["src/content/content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Form Auto-Fill",
+    "default_icon": {
+      "16": "assets/icons/icon.png",
+      "48": "assets/icons/icon.png",
+      "128": "assets/icons/icon.png"
+    }
+  },
+  
+  "icons": {
+    "16": "assets/icons/icon.png",
+    "48": "assets/icons/icon.png",
+    "128": "assets/icons/icon.png"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["src/content/content.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "commands": {
+    "fill-forms-fake": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "Fill all forms with fake data"
+    }
+  }
+}

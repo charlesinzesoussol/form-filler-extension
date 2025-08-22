@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Auto-Fill</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Status and Info -->
+        <section class="status-section">
+            <div class="status-info" id="statusInfo">
+                <span class="status-text" id="statusText">Ready</span>
+                <span class="form-count" id="formCount" style="display: none;">0 forms</span>
+            </div>
+        </section>
+
+        <!-- Form Details -->
+        <section class="form-details" id="formDetails" style="display: none;">
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span class="detail-value" id="fillableCount">0</span>
+                    <span class="detail-label">fillable</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-value" id="fieldCount">0</span>
+                    <span class="detail-label">total</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <section class="progress-section" id="progressSection" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+        </section>
+
+        <!-- Error Display -->
+        <section class="error-section" id="errorSection" style="display: none;">
+            <div class="error-message" id="errorMessage">Error message</div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="action-section">
+            <button class="btn btn-primary" id="detectBtn">Detect</button>
+            <button class="btn btn-success" id="fillBtn" disabled>Fill</button>
+            <button class="btn btn-fake" id="fillFakeBtn">Fill Fake</button>
+            <button class="btn btn-secondary" id="settingsBtn">Settings</button>
+        </section>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel" style="display: none;">
+            <div class="settings-header">
+                <span>Settings</span>
+                <button class="close-btn" id="closeSettingsBtn">×</button>
+            </div>
+            <div class="settings-content">
+                <label class="setting-item">
+                    <input type="checkbox" id="autoDetect" class="setting-checkbox">
+                    <span>Auto-detect forms</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="visualFeedback" class="setting-checkbox">
+                    <span>Visual feedback</span>
+                </label>
+                <label class="setting-item">
+                    <span>Fill delay (ms):</span>
+                    <input type="number" id="fillDelay" class="setting-input" min="0" max="1000" step="50" value="50">
+                </label>
+                <button class="btn btn-secondary" id="editDataBtn">Edit Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../utils/constants.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

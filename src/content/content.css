@@ -1,0 +1,357 @@
+/* Form Auto-Fill Visual Feedback Styles */
+
+/* Success feedback for filled fields */
+.form-fill-success {
+  background-color: #e6f4ea !important;
+  border: 2px solid #1e8e3e !important;
+  box-shadow: 0 0 0 3px rgba(30, 142, 62, 0.1) !important;
+  transition: all 0.3s ease !important;
+  animation: form-fill-success-pulse 0.6s ease !important;
+}
+
+@keyframes form-fill-success-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(30, 142, 62, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(30, 142, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(30, 142, 62, 0);
+  }
+}
+
+/* Error feedback for fields that couldn't be filled */
+.form-fill-error {
+  background-color: #fce8e6 !important;
+  border: 2px solid #d93025 !important;
+  box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.1) !important;
+  transition: all 0.3s ease !important;
+  animation: form-fill-error-shake 0.5s ease !important;
+}
+
+@keyframes form-fill-error-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+/* Processing feedback for fields being filled */
+.form-fill-processing {
+  background-color: #fff3e0 !important;
+  border: 2px solid #f57c00 !important;
+  box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.form-fill-processing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 124, 0, 0.3),
+    transparent
+  );
+  animation: form-fill-processing-sweep 1.5s infinite;
+}
+
+@keyframes form-fill-processing-sweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Container for overlay notifications */
+.form-fill-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647; /* Maximum z-index */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Overlay notification styles */
+.form-fill-overlay {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin-bottom: 12px;
+  max-width: 320px;
+  pointer-events: auto;
+  animation: form-fill-slide-in 0.3s ease;
+}
+
+@keyframes form-fill-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.form-fill-overlay.fade-out {
+  animation: form-fill-slide-out 0.3s ease forwards;
+}
+
+@keyframes form-fill-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Overlay content */
+.form-fill-overlay-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.form-fill-overlay-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-fill-overlay-icon.success {
+  background: #e6f4ea;
+  color: #1e8e3e;
+}
+
+.form-fill-overlay-icon.error {
+  background: #fce8e6;
+  color: #d93025;
+}
+
+.form-fill-overlay-icon.info {
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
+.form-fill-overlay-title {
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.form-fill-overlay-message {
+  color: #5f6368;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.form-fill-overlay-progress {
+  margin-top: 12px;
+}
+
+.form-fill-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.form-fill-progress-fill {
+  height: 100%;
+  background: #1a73e8;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.form-fill-progress-text {
+  font-size: 12px;
+  color: #5f6368;
+  text-align: center;
+}
+
+/* Form highlight styles */
+.form-fill-form-highlight {
+  outline: 2px solid #1a73e8 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+  position: relative !important;
+}
+
+.form-fill-form-highlight::before {
+  content: 'Form detected';
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background: #1a73e8;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* Field group highlighting */
+.form-fill-field-group {
+  background: rgba(26, 115, 232, 0.05) !important;
+  border-radius: 4px !important;
+  padding: 8px !important;
+  margin: 4px 0 !important;
+}
+
+/* Skip indicators for protected fields */
+.form-fill-skip-indicator {
+  position: relative;
+}
+
+.form-fill-skip-indicator::after {
+  content: '🛡️ Protected';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  color: #5f6368;
+  pointer-events: none;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .form-fill-success {
+    background-color: rgba(30, 142, 62, 0.2) !important;
+    border-color: #1e8e3e !important;
+  }
+  
+  .form-fill-error {
+    background-color: rgba(217, 48, 37, 0.2) !important;
+    border-color: #d93025 !important;
+  }
+  
+  .form-fill-processing {
+    background-color: rgba(245, 124, 0, 0.2) !important;
+    border-color: #f57c00 !important;
+  }
+  
+  .form-fill-overlay {
+    background: #292a2d;
+    border-color: #3c4043;
+    color: #e8eaed;
+  }
+  
+  .form-fill-overlay-title {
+    color: #e8eaed;
+  }
+  
+  .form-fill-overlay-message {
+    color: #9aa0a6;
+  }
+  
+  .form-fill-form-highlight::before {
+    background: #8ab4f8;
+    color: #202124;
+  }
+  
+  .form-fill-skip-indicator::after {
+    background: #3c4043;
+    border-color: #5f6368;
+    color: #9aa0a6;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .form-fill-success {
+    border-width: 3px !important;
+  }
+  
+  .form-fill-error {
+    border-width: 3px !important;
+  }
+  
+  .form-fill-processing {
+    border-width: 3px !important;
+  }
+  
+  .form-fill-overlay {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .form-fill-success,
+  .form-fill-error,
+  .form-fill-processing {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .form-fill-processing::after {
+    animation: none;
+  }
+  
+  .form-fill-overlay {
+    animation: none;
+  }
+  
+  .form-fill-progress-fill {
+    transition: none;
+  }
+}
+
+/* Focus management */
+.form-fill-success:focus,
+.form-fill-error:focus,
+.form-fill-processing:focus {
+  outline: 3px solid #1a73e8 !important;
+  outline-offset: 2px !important;
+}
+
+/* Print styles */
+@media print {
+  .form-fill-success,
+  .form-fill-error,
+  .form-fill-processing {
+    background: transparent !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  
+  .form-fill-container,
+  .form-fill-overlay {
+    display: none !important;
+  }
+}

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Auto-Fill Test Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .form-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .checkbox-group label, .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        
+        .checkbox-group input, .radio-group input {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .protected-field {
+            background-color: #ffe6e6;
+            border-color: #ff9999;
+        }
+        
+        .honeypot {
+            display: none;
+        }
+        
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Auto-Fill Test Forms</h1>
+    <p>This page contains various form types for testing the Form Auto-Fill extension.</p>
+
+    <!-- Basic Contact Form -->
+    <div class="form-section">
+        <h2>1. Basic Contact Form</h2>
+        <form id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Contact Form</button>
+        </form>
+    </div>
+
+    <!-- Address Form -->
+    <div class="form-section">
+        <h2>2. Address Form</h2>
+        <form id="addressForm">
+            <div class="form-group">
+                <label for="streetAddress">Street Address:</label>
+                <input type="text" id="streetAddress" name="streetAddress" placeholder="123 Main Street">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" placeholder="Anytown">
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select id="state" name="state">
+                        <option value="">Select State</option>
+                        <option value="AL">Alabama</option>
+                        <option value="CA">California</option>
+                        <option value="FL">Florida</option>
+                        <option value="NY">New York</option>
+                        <option value="TX">Texas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">ZIP Code:</label>
+                    <input type="text" id="zipCode" name="zipCode" placeholder="12345" pattern="[0-9]{5}">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country">
+                    <option value="">Select Country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="MX">Mexico</option>
+                    <option value="UK">United Kingdom</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Address</button>
+        </form>
+    </div>
+
+    <!-- Professional Information Form -->
+    <div class="form-section">
+        <h2>3. Professional Information Form</h2>
+        <form id="professionalForm">
+            <div class="form-group">
+                <label for="company">Company Name:</label>
+                <input type="text" id="company" name="company" placeholder="Example Corporation">
+            </div>
+            
+            <div class="form-group">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" name="jobTitle" placeholder="Software Engineer">
+            </div>
+            
+            <div class="form-group">
+                <label for="website">Company Website:</label>
+                <input type="url" id="website" name="website" placeholder="https://example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="workEmail">Work Email:</label>
+                <input type="email" id="workEmail" name="workEmail" placeholder="john.doe@company.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="industry">Industry:</label>
+                <select id="industry" name="industry">
+                    <option value="">Select Industry</option>
+                    <option value="technology">Technology</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="finance">Finance</option>
+                    <option value="education">Education</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="retail">Retail</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Professional Info</button>
+        </form>
+    </div>
+
+    <!-- Form with Various Input Types -->
+    <div class="form-section">
+        <h2>4. Form with Various Input Types</h2>
+        <form id="variousInputsForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="birthDate">Date of Birth:</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="18" max="120" placeholder="25">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="favoriteColor">Favorite Color:</label>
+                <input type="color" id="favoriteColor" name="favoriteColor" value="#0066cc">
+            </div>
+            
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" maxlength="500" placeholder="Tell us about yourself..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Gender:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="other"> Other</label>
+                    <label><input type="radio" name="gender" value="prefer-not-to-say"> Prefer not to say</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Interests:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="interests" value="technology"> Technology</label>
+                    <label><input type="checkbox" name="interests" value="sports"> Sports</label>
+                    <label><input type="checkbox" name="interests" value="music"> Music</label>
+                    <label><input type="checkbox" name="interests" value="travel"> Travel</label>
+                    <label><input type="checkbox" name="interests" value="cooking"> Cooking</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Various Inputs</button>
+        </form>
+    </div>
+
+    <!-- Form with Protected Fields -->
+    <div class="form-section">
+        <h2>5. Form with Protected Fields</h2>
+        <form id="protectedForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter a secure password" class="protected-field">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" class="protected-field">
+            </div>
+            
+            <!-- Honeypot field (should not be filled) -->
+            <div class="form-group honeypot">
+                <label for="website_url">Website URL (leave blank):</label>
+                <input type="text" id="website_url" name="website_url" class="honeypot">
+            </div>
+            
+            <!-- CAPTCHA placeholder (should not be filled) -->
+            <div class="form-group">
+                <label>CAPTCHA Verification:</label>
+                <div class="g-recaptcha" data-sitekey="dummy-key">
+                    <input type="text" name="captcha" id="captcha" placeholder="CAPTCHA verification" class="protected-field">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="terms" value="accepted" required>
+                    I agree to the terms and conditions
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+    </div>
+
+    <!-- Dynamic Form (for testing dynamic content) -->
+    <div class="form-section">
+        <h2>6. Dynamic Form</h2>
+        <form id="dynamicForm">
+            <div class="form-group">
+                <label for="dynamicField1">Field 1:</label>
+                <input type="text" id="dynamicField1" name="dynamicField1" placeholder="Initial field">
+            </div>
+            
+            <div id="dynamicFieldsContainer">
+                <!-- Dynamic fields will be added here -->
+            </div>
+            
+            <button type="button" onclick="addDynamicField()" class="submit-btn">Add Field</button>
+            <button type="submit" class="submit-btn">Submit Dynamic Form</button>
+        </form>
+    </div>
+
+    <!-- Nested Form Fields -->
+    <div class="form-section">
+        <h2>7. Nested Form Structure</h2>
+        <form id="nestedForm">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="form-group">
+                    <label for="nested_firstName">First Name:</label>
+                    <input type="text" id="nested_firstName" name="personal[firstName]">
+                </div>
+                <div class="form-group">
+                    <label for="nested_lastName">Last Name:</label>
+                    <input type="text" id="nested_lastName" name="personal[lastName]">
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="form-group">
+                    <label for="nested_email">Email:</label>
+                    <input type="email" id="nested_email" name="contact[email]">
+                </div>
+                <div class="form-group">
+                    <label for="nested_phone">Phone:</label>
+                    <input type="tel" id="nested_phone" name="contact[phone]">
+                </div>
+            </fieldset>
+            
+            <button type="submit" class="submit-btn">Submit Nested Form</button>
+        </form>
+    </div>
+
+    <!-- Form with Validation -->
+    <div class="form-section">
+        <h2>8. Form with Validation</h2>
+        <form id="validationForm">
+            <div class="form-group">
+                <label for="required_email">Email (Required):</label>
+                <input type="email" id="required_email" name="required_email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pattern_phone">Phone (Pattern: xxx-xxx-xxxx):</label>
+                <input type="tel" id="pattern_phone" name="pattern_phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+            </div>
+            
+            <div class="form-group">
+                <label for="minmax_age">Age (18-65):</label>
+                <input type="number" id="minmax_age" name="minmax_age" min="18" max="65">
+            </div>
+            
+            <div class="form-group">
+                <label for="maxlength_bio">Bio (Max 100 characters):</label>
+                <textarea id="maxlength_bio" name="maxlength_bio" maxlength="100"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Validated Form</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for dynamic form functionality
+        let dynamicFieldCount = 1;
+        
+        function addDynamicField() {
+            dynamicFieldCount++;
+            const container = document.getElementById('dynamicFieldsContainer');
+            const fieldDiv = document.createElement('div');
+            fieldDiv.className = 'form-group';
+            fieldDiv.innerHTML = `
+                <label for="dynamicField${dynamicFieldCount}">Field ${dynamicFieldCount}:</label>
+                <input type="text" id="dynamicField${dynamicFieldCount}" name="dynamicField${dynamicFieldCount}" placeholder="Dynamic field ${dynamicFieldCount}">
+            `;
+            container.appendChild(fieldDiv);
+        }
+        
+        // Prevent actual form submissions for testing
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submission prevented for testing purposes');
+            });
+        });
+        
+        // Add some console logging for debugging
+        console.log('Test forms page loaded');
+        console.log('Forms detected:', document.querySelectorAll('form').length);
+        console.log('Input fields detected:', document.querySelectorAll('input').length);
+    </script>
+</body>
+</html>
